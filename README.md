@@ -1,3 +1,3 @@
 # ecommerce
-Ecommerce with different payment method
+Ecommerce with different payment methods
 https://pilisign.github.io/ecommerce
