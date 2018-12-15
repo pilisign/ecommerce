@@ -33,7 +33,7 @@
     transition: all 0.3s ease 0s;
     cursor: pointer;
     outline: none;
-    padding: 8px;
+    padding: 5px;
     &:hover {
         box-shadow: 0px 3px 0px rgba(9, 90, 60, 0.1);
         background-image: linear-gradient(to top, rgb(197, 240, 234) 0%, rgb(161, 243, 216) 100%);
@@ -59,6 +59,15 @@
         .fa-times-circle {
             display: flex;
             justify-content: flex-end;
+        }
+        .comprados {
+            .fila {
+                display: flex; 
+                align-items: center;
+                margin-bottom: 5px; 
+                border-bottom: 1px solid #e1e1e1;
+                justify-content: space-between;
+              }
         }
         .footer-carrito {
             display: flex;
@@ -95,6 +104,7 @@
          }
         #lista-comprados {
             margin-bottom: 10px;
+           
         }
      }
  }
@@ -126,6 +136,7 @@
             width: 160px;
             background-color: white;
             box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+            margin-bottom: 10px;
             cursor: pointer;
             .nombre {
                 font-size: 14px;
@@ -147,6 +158,9 @@
             .price {
                 margin: 5px;
                 text-align: center;
+            }
+            .fa-cookie {
+                font-size: 20px;
             }
         }           
      }
@@ -212,6 +226,7 @@
         background-color: aquamarine;
         padding: 5px;
         margin-bottom: 50px;
+        text-align: center;
     }
 }
 
@@ -223,4 +238,36 @@
 #footer {
     height: 200px;
     background-color: aquamarine;
+    text-align: center;
+    padding-top: 10px;
 }
+
+@media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      height: 135px;
+      position: sticky;
+      .logo {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        text-align: center;
+      }
+      #carrito #total-text {
+        width: 230px;
+        top: 153px;
+        background-color: aquamarine;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+        margin: auto;
+        right: 10px;
+      }
+    }
+
+    #pago {
+      height: auto;
+      .medios {
+        justify-content: center;
+      }
+    }
+  }
