@@ -9,13 +9,21 @@ const productosTienda = [
   {producto: 'Diamond Cookies', img: './img/galles-2.jpg', precio: 300},
   {producto: 'Watermelon Cookies', img: './img/galles-3.jpg', precio: 550},
   {producto: 'Donuts', img: './img/donuts.jpg', precio: 550},
+  {producto: 'Chewbacca Cookies', img: './img/galles-4.jpg', precio: 200},
+  {producto: 'Diamond Cookies', img: './img/galles-2.jpg', precio: 300},
+  {producto: 'Watermelon Cookies', img: './img/galles-3.jpg', precio: 550},
+  {producto: 'Donuts', img: './img/donuts.jpg', precio: 550},
+  {producto: 'Pantone Cookies', img: './img/galles-1.jpg', precio: 100},
+  {producto: 'Chewbacca Cookies', img: './img/galles-4.jpg', precio: 200},
+  {producto: 'Watermelon Cookies', img: './img/galles-3.jpg', precio: 550},
+  {producto: 'Donuts', img: './img/donuts.jpg', precio: 550},
 ];
 
 const mediosDePago = [
-  {medio: 'Efectivo', img: './img/cash.png', recargo: 0},
-  {medio: 'Tarjeta de Debito', img: './img/debit.jpg', recargo: 5},
-  {medio: 'Tarjeta de Credito', img: './img/card.png', recargo: 10},
-  {medio: 'Cheque', img: './img/receipt.jpg', recargo: 20},
+  {medio: 'Cash', img: './img/cash.png', recargo: 0},
+  {medio: 'Debit Card', img: './img/debit.jpg', recargo: 5},
+  {medio: 'Credit Card', img: './img/card.png', recargo: 10},
+  {medio: 'Check', img: './img/receipt.jpg', recargo: 20},
 ];
 
 $(".productos").animate({
@@ -45,7 +53,7 @@ function armarcarrousel(){
        elementosEnCarrito++
        cosasEnCarrito.html(contadorCarrito);
        console.log('este es mi array de productos', arrayProductos);
-
+      
       let nombreproducto = $(this).siblings('.nombre').html();
       let precio = $(this).siblings('.price').html();
       let producto = {
@@ -66,26 +74,15 @@ function armarcarrousel(){
       let compraUsuario = JSON.parse(localStorage.getItem('arrayProductos'));
 
       console.log('es total es de', total);
+
       carroCosas();
       sumarCompra();
+      crearListaComprados();
 
-      // muestro lista de productos comprados
-      for (i = 0; i < arrayProductos.length; i++) {
-        let comprado = arrayProductos[i].nombreproducto;
-        let listaComprados = $('<ul class="comprados"><li><i class="fas fa-minus-circle"></i> ' + comprado + '</li></ul>');
-        let carrito = $('#lista-comprados');
-        carrito.append(listaComprados);
-      }
-
-      let botonBorrar = $('<ul class="comprados"><li><i class="fas fa-minus-circle"></i></li></ul>');
-      botonBorrar.on("click", function() {
-      borrarProducto(arrayProductos[i]);
-      });
   });   
 };
 
 $("#pago").animate({
-  height: '300px',
   opacity: '1.0'
 });
 
@@ -114,18 +111,18 @@ function armarMediosDePago(){
       cheque();
       let extra = (total * 20) / 100;
       let totalCheque = total + extra;
-      let checkout = $('<div class="total"><p>El total de tu compra es de $ '+ totalCheque +'</p></div>');
+      let checkout = $('<div class="total"><p>The total amount of your purchase is $ '+ totalCheque +'</p><p>Thanks! <i class="far fa-smile"></i></p></div>');
       $('#modal-checkout').append(checkout);
       console.log('pagaste con cheque');
     } else if (clickMedioDePago == "./img/debit.jpg") {
       debito();
       let extra = (total * 5) / 100;
       let totalDebito = total + extra;
-      let checkout = $('<div class="total"><p>El total de tu compra es de $ '+ totalDebito +'</p></div>');
+      let checkout = $('<div class="total"><p>The total amount of your purchase is $ '+ totalDebito +'</p><p>Thanks! <i class="far fa-smile"></i></p></div>');
       $('#modal-checkout').append(checkout);
       console.log('pagaste con tarjeta de debito', 'tu total es de', totalDebito );
     } else { 
-      let checkout = $('<div class="total"><p>El total de tu compra es de $ '+ total +'</p></div>');
+      let checkout = $('<div class="total"><p>The total amount of your purchase is $ '+ total +'</p><p>Thanks! <i class="far fa-smile"></i></p></div>');
       $('#modal-checkout').append(checkout);
       console.log('pagaste con efectivo');
     }
@@ -139,16 +136,17 @@ function sumarCompra(){
   total += parseInt(obj.precio);
   console.log('precio actual del objeto', obj.precio);
 });
-
-}
-
-function borrarProducto(producto) {
-  var indice = arrayProductos.findIndex(p => p.nombre === producto.nombreproducto);
-  arrayproducto.splice(indice, 1);
 }
 
 // ver mi total
-$('#carrito').on('click', function(){
+$('.fa-shopping-cart').on('click', function(){
+  $('#total-text').toggleClass('none');
+  $('#balloon').toggleClass('none');
+  $('.suma-total').html(total);
+})
+
+// cerrar pop up
+$('.fa-times-circle').on('click', function(){
   $('#total-text').toggleClass('none');
   $('#balloon').toggleClass('none');
   $('.suma-total').html(total);
@@ -182,11 +180,52 @@ $('#pagar-total').on('click', function(){
 
   let subtotal = total + extra + interes;
   
-  let checkout = $('<div class="total"><p>Pagaste en ' + cuantasCuotas + ' el total de la compra es de $' + subtotal +'</p></div>');
+  let checkout = $('<div class="total"><p>Purchase in ' + cuantasCuotas + ' dues. The total amount of your purchase is $' + subtotal +'</p><p>Thanks! <i class="far fa-smile"></i></p></div>');
   $('#modal-checkout').append(checkout);
   console.log('pagaste con tarjeta de credito', 'tu total es de', subtotal, cuantasCuotas);
 })
 
- armarcarrousel();
- carroCosas();
- armarMediosDePago();
+function crearListaComprados() {
+  let tablaProductos = $('<ul class="comprados"></ul>')
+  let cabecera = '<h3>Productos comprados</h3>'
+  tablaProductos.append(cabecera)
+
+  let container = $('div.carrito');
+  container.append(tablaProductos);
+  render();
+}
+
+function render() {
+  let tablaProductos = $('.comprados');
+  for ( let i = 0; i<= arrayProductos.length; i++) {
+      var nombreproducto = "<span>" + arrayProductos[i].nombreproducto + "</span>";
+
+  let buttonBorrar = $('<button>Delete</button>');
+  buttonBorrar.on("click", function() {
+      eliminarProducto(arrayProductos[i]);
+  });
+
+  let fila = $('<li class="fila"></li>');
+  fila.append(nombreproducto);
+  fila.append(buttonBorrar);
+  tablaProductos.append(fila);
+  carroCosas();
+  sumarCompra();
+  }
+}
+
+function eliminarProducto(producto) {
+  let indice = arrayProductos.findIndex(p => p.id === producto.id);
+  arrayProductos.splice(indice, 1);
+  
+  limpiarTabla()
+  render(arrayProductos)
+  sumarCompra()
+}
+
+function limpiarTabla(){
+  $('.fila').remove();
+}
+
+armarcarrousel();
+armarMediosDePago();

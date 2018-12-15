@@ -1,57 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet">
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-   <link rel="stylesheet" href="css/style.css">
-   <title>The cookie shop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>The cookie shop</title>
 </head>
 <body>
-   <header>
+  <header>
+    <div class="logo">
       <a href="index.html"><h1><i class="logo fas fa-cookie-bite"></i> The cookie shop</h1></a>
-       <div id="breadcrumb">
-           <div id="carrito">
-               <span id="cosas-en-carrito"></span>
-               <i class="fas fa-shopping-cart"></i>
-               <div id="total-text" class="none">
-                  <i class="far fa-times-circle"></i>
-                  <div id="lista-comprados"></div>
-                  <div class="footer-carrito">
-                    Total: <span class="suma-total"></span>
-                    <button id="ir-a-pagar">Pagar</button>
-                </div>
-                </div>
-               <div id="balloon" class="none ballon-total"></div>
-           </div>
-           <div id="monto"></div>
-       </div>
-   </header>
-   <div class="productos">
-       <h2>Our cookies</h2>
-       <div id="productos"></div>
-       <button id="load">Load more</button>
-   </div>
-   <div id="pago" class="none">
-       <h2>Checkout</h2>
-       <div class="medios"></div>
-       <div id="cuotas" class="none">
-            <select id="select-cuotas" name="select">
-                <option value="1pago">1 Pago</option> 
-                <option value="12cuotas" selected>12 cuotas c/interés</option>
-                <option value="24cuotas">24 cuotas c/interés</option>
-                <option value="36cuotas">36 cuotas c/interés</option>
-            </select>
-       </div>
-   </div>
-   <section>
-       <div id="modal-checkout"><button id="pagar-total" class="none">Aceptar y Pagar</button></div>
-   </section>
-   <footer id="footer">
-   </footer>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script type="text/javascript" src="js/index.js"></script>
+    </div>
+    <div id="breadcrumb">
+      <div id="carrito">
+        <span id="cosas-en-carrito"></span>
+        <i class="fas fa-shopping-cart"></i>
+        <div id="total-text" class="none">
+         <i class="far fa-times-circle"></i>
+         <div><ul class="comprados"></ul></div>
+         <div class="footer-carrito">
+          Total: <span class="suma-total"></span>
+          <button id="ir-a-pagar">Pay</button>
+        </div>
+        </div>
+        <div id="balloon" class="none ballon-total"></div>
+      </div>
+      <div id="monto"></div>
+    </div>
+  </header>
+  <div class="productos">
+    <h2>Our cookies</h2>
+    <div id="productos"></div>
+  </div>
+  <div class="compras-container"></div>
+  <div class="tu-compra"></div>
+  </div> 
+  <div id="pago" class="none">
+    <h2>Checkout</h2>
+    <div class="medios"></div>
+    <div id="cuotas" class="none">
+      <select id="select-cuotas" name="select">
+        <option value="1pago">1 payment</option> 
+        <option value="12" selected>12 dues with surcharges</option>
+        <option value="24">24 dues with surcharges</option>
+        <option value="36">36 dues with surcharges</option>
+      </select>
+    </div>
+  </div>
+  <section>
+    <div id="modal-checkout"><button id="pagar-total" class="none">Pay</button></div>
+  </section>
+  <footer id="footer">
+    <a href="https://github.com/pilisign"><p>By @pilisign</p></a>
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
